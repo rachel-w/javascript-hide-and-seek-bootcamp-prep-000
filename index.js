@@ -7,19 +7,23 @@ function nestedTarget(){
 }
 
 function increaseRankBy(n){
-  var list = document.getElementById("app").querySelectorAll("ul.ranked-list li")
+  const rankedLists = document.querySelectorAll('.ranked-list')
 
-  for (let i = 0; i <list.length; i++){
-    list[i].innerHTML = parseInt(list[i].innerHTML + n)
-  }
+    for (let i = 0, l = rankedLists.length; i < l; i++) {
+      let children = rankedLists[i].children
+
+      for (let j = 0, k = children.length; j < k; j++) {
+        children[j].innerHTML = parseInt(children[j].innerHTML) + n
+      }
+    }
 }
 
 function deepestChild(){
-  var list = document.getElementById("grand-node").querySelectorAll("div")
-  var child
+  let node = document.getElementById('grand-node')
+  let nextNode = node.children[0]
 
-  for (let i=0; i < list.length; i++){
-    child = list[i].querySelector("div")
+  while (nextNode) {
+    node = nextNode
+    nextNode = node.children[0]
   }
-  return child
 }
